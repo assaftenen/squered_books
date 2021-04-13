@@ -1,20 +1,13 @@
-<div *ngIf="vm$| async as vm">
-    <div *ngIf="vm.userName">
-        Hello {{vm.userName}}, please look for your favorite book:
+<div class="search-wrapper" *ngIf="vm$| async as vm">
+    <div class="title" *ngIf="vm.userName">
+        <app-search-title [userName]="vm.userName"></app-search-title>
     </div>
-
-    <form [formGroup]="searchForm">
-        <div class="form-wrapper">
-            <mat-form-field class="form-field" appearance="outline">
-              <mat-label> Book Name
-              </mat-label>
-              <input matInput formControlName="bookName" required>
-              <mat-error *ngIf="searchForm.controls.bookName.touched && searchForm.controls.bookName.invalid">
-                <span *ngIf="searchForm.controls.bookName.errors.required">This field is mandatory.</span>
-                <span *ngIf="searchForm.controls.bookName.errors.pattern">This field is invalid.</span>
-              </mat-error>
-            </mat-form-field>
-        </div>
-          </form>
-        
+    <div>
+    <app-search-input
+        (searchBookByInput)="onSearchBooks($event)">
+    </app-search-input>
+    </div>
+    <div *ngIf="vm.booksList">
+        <app-search-list [booksList]=vm.booksList></app-search-list>
+    </div>     
 </div>

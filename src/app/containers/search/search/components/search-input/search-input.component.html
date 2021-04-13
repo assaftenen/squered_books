@@ -1,1 +1,13 @@
-<p>search-input works!</p>
+<form [formGroup]="searchForm">
+    <div class="form-wrapper">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Book Name
+          </mat-label>
+          <input matInput formControlName="bookName" required>
+          <mat-error *ngIf="searchForm.controls.bookName.touched && searchForm.controls.bookName.invalid">
+            <span *ngIf="searchForm.controls.bookName.errors.required">This field is mandatory.</span>
+            <span *ngIf="searchForm.controls.bookName.errors.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+    </div>
+      </form>

@@ -4,6 +4,7 @@ import { distinctUntilChanged, pluck } from 'rxjs/operators';
 
 export interface State{
     userName:string
+    booksList: any
 }
 
 @Injectable({
@@ -11,7 +12,8 @@ export interface State{
    })
 export class BookStore {
     readonly initialDataSource: State = {
-        userName:undefined
+        userName:undefined,
+        booksList:undefined
         
     };
     private booksDataSource = new BehaviorSubject<State>(this.initialDataSource);
